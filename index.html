@@ -11,25 +11,33 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1 class="display-3" style="text-align: center;">Almost there...</h1>
-    <h1 id="time" class="display-1" style="text-align: center;"></h1>
+   
+    <h1 id="first" class="display-3" style="text-align: center;">Almost there...</h1>
+    <h1 id="time" class="display-4" style="text-align: center;">loading</h1>
     
-
-        
     <script>
-      var deadline = new Date("Sep 13, 2018 00:00:00").getTime();
+      var deadline = new Date("Aug 2, 2018 18:52:00").getTime();
       var x = setInterval(function() {
       var now = new Date().getTime();
       var t = deadline - now;
       var days = Math.floor(t / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+      var hours = Math.floor((t % (1000 * 60 * 60 * 24))/(1000 * 60 * 60));
       var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((t % (1000 * 60)) / 1000);
-      document.getElementById("time").innerHTML = days + "d " 
-      + hours + "h " + minutes + "m " + seconds + "s ";
+      if (days == 1) {
+        document.getElementById("demo").innerHTML = days + "day<br>" 
+        + hours + "h " + minutes + "m " + seconds + "s";
+      } else if (days == 0) {
+        document.getElementById("time").innerHTML = hours + "h " + minutes + "m " + seconds  + "s";        
+      } else {
+        document.getElementById("time").innerHTML = days + "days<br>" 
+        + hours + "h " + minutes + "m " + seconds  + "s";        
+      };
+
           if (t < 0) {
               clearInterval(x);
               document.getElementById("time").innerHTML = "25";
+              document.getElementById("first").style = "display: none;"
           }
       }, 1000);
     </script>
